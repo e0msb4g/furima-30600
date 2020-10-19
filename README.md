@@ -23,4 +23,40 @@ Things you may want to cover:
 
 * ...
 
-|
+## usersテーブル
+
+| Column | Type         | Options              |
+| ------ | ------------ | -------------------- |
+| name   | string       | null: false          |
+| email  | string       | null: false          |
+
+### Association
+- has_many :items
+- has_many :comments
+
+## itemsテーブル
+
+| Column | Type         | Options                        |
+| ------ | ------------ | -------------------------------|
+| name   | string       | null: false                    |
+| price  | integer      | null: false                    |
+| status | text         | null: false                    |
+| user   | references   | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- has_many :comments
+
+## commentsテーブル
+
+| Column | Type         | Options                       |
+| ------ | ------------ | ------------------------------|
+| text   | text         | null:false                    |
+| user   | references   | null:false, foreign_key: true |
+| item   | references   | null:false, foreign_key: true |
+
+### Associationテーブル
+
+- belongs_to :user
+- belongs_to :item
