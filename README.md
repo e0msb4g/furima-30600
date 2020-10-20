@@ -49,11 +49,11 @@ Things you may want to cover:
 | name             | string       | null: false                    |
 | price            | integer      | null: false                    |
 | detail           | text         | null: false                    |
-| category         | string       | null: false                    |
-| status           | string       | null: false                    |
-| shipment_source  | string       | null: false                    |
-| delivery_charge  | string       | null: false                    |
-| period           | string       | null: false                    |
+| category         | integer      | null: false                    |
+| status           | integer      | null: false                    |
+| shipment_source  | integer      | null: false                    |
+| delivery_charge  | integer      | null: false                    |
+| period           | integer      | null: false                    |
 | user             | references   | null: false, foreign_key: true |
 
 
