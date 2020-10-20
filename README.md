@@ -27,24 +27,35 @@ Things you may want to cover:
 
 | Column | Type         | Options              |
 | ------ | ------------ | -------------------- |
-| name   | string       | null: false          |
-| email  | string       | null: false          |
-|password| string       | null: false          |
+| nickname         | string       | null: false          |
+| email            | string       | null: false          |
+| password         | string       | null: false          |
+| first_name       | string       | null: false          |
+| first_name_kana  | string       | null: false          |
+| last_name        | string       | null: false          |
+| last_name_kana   | string       | null: false          |
+| birthday         | integer      | null: false          |
+
 
 ### Association
 - has_many :items
 - has_many :comments
-- has_one  :shipping_address
 - has_many :purchases
 
 ## itemsテーブル
 
-| Column | Type         | Options                        |
-| ------ | ------------ | -------------------------------|
-| name   | string       | null: false                    |
-| price  | integer      | null: false                    |
-| status | text         | null: false                    |
-| user   | references   | null: false, foreign_key: true |
+| Column           | Type         | Options                        |
+| ------           | ------------ | -------------------------------|
+| name             | string       | null: false                    |
+| price            | integer      | null: false                    |
+| detail           | text         | null: false                    |
+| category         | string       | null: false                    |
+| status           | string       | null: false                    |
+| shipment_source  | string       | null: false                    |
+| delivery_charge  | string       | null: false                    |
+| period           | string       | null: false                    |
+| user             | references   | null: false, foreign_key: true |
+
 
 ### Association
 
@@ -80,7 +91,6 @@ Things you may want to cover:
 | user            | references   | null: false, foreign_key: true|
 
 ### Association
-- belongs_to :user
 - belongs_to :purchase
 
 ## purchaseテーブル
