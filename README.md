@@ -87,7 +87,6 @@ Things you may want to cover:
 | building        | string       |                               |
 | post_code       | string       | null: false                   |
 | phone_number    | string       | null: false                   |
-| address_kana    | string       | null: false                   |
 | user            | references   | null: false, foreign_key: true|
 
 ### Association
@@ -102,3 +101,4 @@ Things you may want to cover:
 ### Association
 - belongs_to :user
 - belongs_to :item
+- has_one    :shipping_address
