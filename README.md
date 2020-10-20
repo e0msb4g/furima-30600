@@ -70,14 +70,12 @@ Things you may want to cover:
 
 | Column          | Type         | Options                       |
 | --------------- | ------------ | ------------------------------|
-| prefecture      | string       | null: false                   |
+| prefecture_id   | integer      | null: false                   |
 | city            | string       | null: false                   |
-| town_name       | string       | null: false                   |
 | house_number    | string       | null: false                   |
 | building        | string       |                               |
-| room_number     | integer      |                               |
-| post_code       | integer      | null: false                   |
-| phone_number    | integer      | null: false                   |
+| post_code       | string       | null: false                   |
+| phone_number    | string       | null: false                   |
 | address_kana    | string       | null: false                   |
 | user            | references   | null: false, foreign_key: true|
 
@@ -88,12 +86,9 @@ Things you may want to cover:
 ## purchaseテーブル
 | Column          | Type         | Options                       |
 | --------------- | ------------ | ------------------------------|
-| preferred_date  | string       | null:false                    |
 | user            | references   | null:false, foreign_key: true |
 | item            | references   | null:false, foreign_key: true |
-| shipping_address| references   | null:false, foreign_key: true |
 
 ### Association
 - belongs_to :user
-- belongs_to :items
-- has_one    :shipping_address
+- belongs_to :item
