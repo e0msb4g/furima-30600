@@ -21,8 +21,6 @@ describe User do
       end
 
       it 'ユーザー本名の名前と名字のフリガナそれぞれに、カタカナが使用されていれば登録できる' do
-        @user.first_name_kana = 'サトウ'
-        @user.last_name_kana = 'ヒカル'
         expect(@user).to be_valid
       end
     end
