@@ -31,50 +31,50 @@ describe User do
 
     context '新規登録がうまくいかない時' do
       it 'nicknameが空だと登録できない' do
-        user = User.new(nickname: '', email: 'aaa@gmail.com', first_name: '青木', first_name_kana: 'あおき', last_name: '浩輝', last_name_kana: 'こうき', password: '1111aaaa', password_confirmation: '1111aaaa', birthday: '1999-09-09')
-        user.valid?
+        @user.nickname = ""
+        @user.valid?
         expect(user.errors.full_messages).to include("Nickname can't be blank")
       end
 
       it 'emailが空だと登録できない' do
-        user = User.new(nickname: 'koki', email: '', first_name: '青木', first_name_kana: 'あおき', last_name: '浩輝', last_name_kana: 'こうき', password: '1111aaaa', password_confirmation: '1111aaaa', birthday: '1999-09-09')
-        user.valid?
+        @user.email = ""
+        @user.valid?
         expect(user.errors.full_messages).to include("Email can't be blank")
       end
 
       it 'passwordが空だと登録できない' do
-        user = User.new(nickname: 'koki', email: 'aaa@gmail.com', first_name: '青木', first_name_kana: 'あおき', last_name: '浩輝', last_name_kana: 'こうき', password: '', password_confirmation: '', birthday: '1999-09-09')
-        user.valid?
+        @user.password = ""
+        @user.valid?
         expect(user.errors.full_messages).to include("Password can't be blank")
       end
 
       it 'ユーザー本名の名字が空だと登録できない' do
-        user = User.new(nickname: 'koki', email: 'aaa@gmail.com', first_name: '', first_name_kana: 'あおき', last_name: '浩輝', last_name_kana: 'こうき', password: '1111aaaa', password_confirmation: '1111aaaa', birthday: '1999-09-09')
-        user.valid?
+        @user.first_name = ""
+        @user.valid?
         expect(user.errors.full_messages).to include("First name can't be blank")
       end
 
       it 'ユーザー本名の名字のフリガナが空だと登録できない' do
-        user = User.new(nickname: 'koki', email: 'aaa@gmail.com', first_name: '青木', first_name_kana: '', last_name: '浩輝', last_name_kana: 'こうき', password: '1111aaaa', password_confirmation: '1111aaaa', birthday: '1999-09-09')
-        user.valid?
+        @user.first_name_kana = ""
+        @user.valid?
         expect(user.errors.full_messages).to include("First name kana can't be blank")
       end
 
       it 'ユーザー本名の名前が空だと登録できない' do
-        user = User.new(nickname: 'koki', email: 'aaa@gmail.com', first_name: '青木', first_name_kana: 'あおき', last_name: '', last_name_kana: 'こうき', password: '1111aaaa', password_confirmation: '1111aaaa', birthday: '1999-09-09')
-        user.valid?
+        @user.last_name = ""
+        @user.valid?
         expect(user.errors.full_messages).to include("Last name can't be blank")
       end
 
       it 'ユーザー本名の名前のフリガナが空だと登録できない' do
-        user = User.new(nickname: 'koki', email: 'aaa@gmail.com', first_name: '青木', first_name_kana: 'あおき', last_name: '浩輝', last_name_kana: '', password: '1111aaaa', password_confirmation: '1111aaaa', birthday: '1999-09-09')
-        user.valid?
+        @user.last_name_kana = ""
+        @user.valid?
         expect(user.errors.full_messages).to include("Last name kana can't be blank")
       end
 
       it 'birthdayが空だと登録できない' do
-        user = User.new(nickname: 'koki', email: 'aaa@gmail.com', first_name: '青木', first_name_kana: 'あおき', last_name: '浩輝', last_name_kana: 'こうき', password: '1111aaaa', password_confirmation: '1111aaaa', birthday: '')
-        user.valid?
+        @user.birthday = ""
+        @user.valid?
         expect(user.errors.full_messages).to include("Birthday can't be blank")
       end
 
@@ -99,12 +99,20 @@ describe User do
         expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
 
-      it 'パスワードは半角英数字混合で入力する必要がある' do
+      it 'パスワードは半角数字のみでは登録できないこと' do
         @user.password = '11111111'
         @user.password_confirmation = '11111111'
         @user.valid?
         expect(@user.errors.full_messages).to include('Password is invalid')
       end
+
+      it 'パスワードは半角英字のみでは登録できないこと' do
+        @user.password = 'aaaaaaaa'
+        @user.password_confirmation = 'aaaaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password is invalid')
+      end
+
 
       it 'パスワードは確認用のものと一致してなければならない' do
         @user.password_confirmation = '2222bbbbb'
