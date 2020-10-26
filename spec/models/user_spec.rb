@@ -33,49 +33,49 @@ describe User do
       it 'nicknameが空だと登録できない' do
         @user.nickname = ""
         @user.valid?
-        expect(user.errors.full_messages).to include("Nickname can't be blank")
+        expect(@user.errors.full_messages).to include("Nickname can't be blank")
       end
 
       it 'emailが空だと登録できない' do
         @user.email = ""
         @user.valid?
-        expect(user.errors.full_messages).to include("Email can't be blank")
+        expect(@user.errors.full_messages).to include("Email can't be blank")
       end
 
       it 'passwordが空だと登録できない' do
         @user.password = ""
         @user.valid?
-        expect(user.errors.full_messages).to include("Password can't be blank")
+        expect(@user.errors.full_messages).to include("Password can't be blank")
       end
 
       it 'ユーザー本名の名字が空だと登録できない' do
         @user.first_name = ""
         @user.valid?
-        expect(user.errors.full_messages).to include("First name can't be blank")
+        expect(@user.errors.full_messages).to include("First name can't be blank")
       end
 
       it 'ユーザー本名の名字のフリガナが空だと登録できない' do
         @user.first_name_kana = ""
         @user.valid?
-        expect(user.errors.full_messages).to include("First name kana can't be blank")
+        expect(@user.errors.full_messages).to include("First name kana can't be blank")
       end
 
       it 'ユーザー本名の名前が空だと登録できない' do
         @user.last_name = ""
         @user.valid?
-        expect(user.errors.full_messages).to include("Last name can't be blank")
+        expect(@user.errors.full_messages).to include("Last name can't be blank")
       end
 
       it 'ユーザー本名の名前のフリガナが空だと登録できない' do
         @user.last_name_kana = ""
         @user.valid?
-        expect(user.errors.full_messages).to include("Last name kana can't be blank")
+        expect(@user.errors.full_messages).to include("Last name kana can't be blank")
       end
 
       it 'birthdayが空だと登録できない' do
         @user.birthday = ""
         @user.valid?
-        expect(user.errors.full_messages).to include("Birthday can't be blank")
+        expect(@user.errors.full_messages).to include("Birthday can't be blank")
       end
 
       it 'メールアドレスは重複してはならない' do
@@ -118,6 +118,30 @@ describe User do
         @user.password_confirmation = '2222bbbbb'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+
+      it 'ユーザー本名の名字に全角漢字、ひらがな、カタカナ以外が入力されている場合に登録ができないこと' do
+        @user.first_name = "aaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name is invalid")
+      end
+
+      it 'ユーザー本名の名前に全角漢字、ひらがな、カタカナ以外が入力されている場合に登録ができないこと' do
+        @user.last_name = "aaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name is invalid")
+      end
+
+      it 'ユーザー本名の名字のフリガナに全角カタカナ以外が入力されている場合に登録できないこと' do
+        @user.first_name_kana = "aaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kana is invalid")
+      end
+
+      it 'ユーザー本名の名前のフリガナに全角カタカナ以外が入力されている場合に登録できないこと' do
+        @user.last_name_kana = "aaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name kana is invalid")
       end
     end
   end
