@@ -17,8 +17,6 @@ describe User do
       end
 
       it 'ユーザー本名の名字と名前それぞれに、漢字、平仮名、カタカナが使用されていれば登録できる' do
-        @user.first_name = '佐藤'
-        @user.last_name = 'ひかる'
         expect(@user).to be_valid
       end
 
