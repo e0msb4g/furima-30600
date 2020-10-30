@@ -11,7 +11,7 @@ FactoryBot.define do
     period_id { 2 }
 
     after(:build) do |item|
-      item.image.attach(io: File.open('public/images/test_image.jpg'), filename: 'test_image.png')
+      item.image.attach(io: File.open('public/images/test_image.jpg'), filename: 'test_image.jpg')
     end
   end
 end
