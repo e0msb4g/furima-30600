@@ -36,31 +36,31 @@ describe Item do
       it 'status_idが１だと登録できない' do
         @item.status_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Status Select")
+        expect(@item.errors.full_messages).to include('Status Select')
       end
 
       it 'category_idが1だと登録できない' do
         @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category Select")
+        expect(@item.errors.full_messages).to include('Category Select')
       end
 
       it 'shipment_source_idが1だと登録できない' do
         @item.shipment_source_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipment source Select")
+        expect(@item.errors.full_messages).to include('Shipment source Select')
       end
 
       it 'delivery_charge_idが1だと登録できない' do
         @item.delivery_charge_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery charge Select")
+        expect(@item.errors.full_messages).to include('Delivery charge Select')
       end
 
       it 'period_idが1だと登録できない' do
         @item.period_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Period Select")
+        expect(@item.errors.full_messages).to include('Period Select')
       end
 
       it 'imageが空だと登録できない' do
@@ -72,19 +72,19 @@ describe Item do
       it '価格が300円より低いと出品できない' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than 299")
+        expect(@item.errors.full_messages).to include('Price must be greater than 299')
       end
 
       it '価格が9,999,999円より大きいと出品できない' do
-        @item.price = 100000000
+        @item.price = 100_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be less than 10000000")
+        expect(@item.errors.full_messages).to include('Price must be less than 10000000')
       end
 
       it '価格は半角数字でないと登録できない' do
-        @item.price = "１１１１１"
+        @item.price = '１１１１１'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
     end
   end
