@@ -20,10 +20,6 @@ class PurchasesController < ApplicationController
     end
   end
 
-  def set_item
-    @item = Item.find(params[:item_id])
-  end
-
   private
 
   def purchase_params
@@ -49,5 +45,9 @@ class PurchasesController < ApplicationController
     unless @item.purchase == nil
       redirect_to root_path
     end
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 end
