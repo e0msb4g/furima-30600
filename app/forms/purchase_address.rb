@@ -10,6 +10,8 @@ class PurchaseAddress
     validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
     validates :phone_number,length: { maximum: 11 }
     validates :token
+    validates :item_id
+    validates :user_id
   end
   
   def save
