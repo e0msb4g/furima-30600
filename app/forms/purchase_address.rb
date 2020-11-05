@@ -4,7 +4,7 @@ class PurchaseAddress
   attr_accessor :user_id, :item_id, :prefecture_id, :city, :house_number, :building, :post_code, :phone_number, :purchase, :token
 
   with_options presence: true do
-    validates :prefecture_id
+    validates :prefecture_id,numericality:{ other_than: 1 ,message: "Select Prefecture"}
     validates :city
     validates :house_number
     validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}

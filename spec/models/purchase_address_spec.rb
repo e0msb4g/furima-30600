@@ -68,6 +68,12 @@ RSpec.describe PurchaseAddress, type: :model do
         @pa.valid?
         expect(@pa.errors.full_messages).to include("Token can't be blank")
       end
+
+      it "prefecture_idが1だと登録できない" do
+        @pa.prefecture_id = 1
+        @pa.valid?
+        expect(@pa.errors.full_messages).to include("Select Prefecture")
+      end
     end
   end
 end
