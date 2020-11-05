@@ -11,11 +11,8 @@ RSpec.describe PurchaseAddress, type: :model do
         expect(@pa).to be_valid
       end
 
-      it 'post_codeにハイフンが入力されており、前半3字、後半4字の数字であれば購入できる' do
-        expect(@pa).to be_valid
-      end
-
-      it '電話番号が11桁以内でハイフンがなければ、購入できる' do
+      it 'buildingが空でも、購入できる' do
+        @pa.building = ""
         expect(@pa).to be_valid
       end
     end
